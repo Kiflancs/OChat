@@ -1,25 +1,32 @@
+// Bejelentkezés
+document.getElementById('login-form').addEventListener('submit', async function(event) {
+  event.preventDefault();
+  const username = document.getElementById('username').value;
 
-// Példa felhasználók
-const users = ['Daniel', 'Sorin', 'Péter', 'Kristóf'];
+  const response = await fetch('/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username })
+  });
 
-// Dinamikus felhasználói lista
-const userList = document.getElementById('user-list');
-users.forEach(user => {
-  const li = document.createElement('li');
-  li.textContent = user;
-  userList.appendChild(li);
+  if (response.ok) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('chat-screen').style.display = 'block';
+  } else {
+    alert('Érvénytelen felhasználónév');
+  }
 });
 
 // Üzenetküldés
-const form = document.getElementById('chat-form');
-const messages = document.getElementById('messages');
-
-form.addEventListener('submit', function(event) {
+document.getElementById('message-form').addEventListener('submit', function(event) {
   event.preventDefault();
-  const input = document.getElementById('message-input');
-  const message = document.createElement('div');
-  message.textContent = input.value;
-  message.className = 'message sent'; // Alapértelmezett "küldött" üzenet
-  messages.appendChild(message);
-  input.value = '';
+  const messageInput = document.getElementById('message-input');
+  const message = messageInput.value;
+  
+  const messageDiv = document.createElement('div');
+  messageDiv.textContent = message;
+  messageDiv.className = 'message sent';
+  
+  document.getElementById('messages').appendChild(messageDiv);
+  messageInput.value = '';
 });
