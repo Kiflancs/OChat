@@ -1,1 +1,29 @@
-
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OChat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <h3>Felhasználók</h3>
+      <ul id="user-list">
+        <!-- Nevek dinamikusan hozzáadva -->
+      </ul>
+    </aside>
+    <main class="chat-window">
+      <div class="messages" id="messages">
+        <!-- Üzenetek dinamikusan megjelenítve -->
+      </div>
+      <form class="input-area" id="chat-form">
+        <input type="text" id="message-input" placeholder="Írj valamit...">
+        <button type="submit">Küldés</button>
+      </form>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
